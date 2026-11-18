@@ -93,7 +93,7 @@ function ProductsCatalogContent() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
       {/* Breadcrumb */}
       <nav className="text-xs text-black/60 mb-6 flex items-center gap-2">
         <span onClick={() => router.push('/')} className="hover:text-black cursor-pointer">Home</span>
@@ -254,9 +254,9 @@ function ProductsCatalogContent() {
         {/* ================= MAIN PRODUCTS LISTING (9 cols) ================= */}
         <section className="lg:col-span-9 space-y-6">
           {/* Top Bar: Title, Count, Sort, Mobile Trigger */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-black/10 gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-black/10 gap-3 sm:gap-4">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-black text-black tracking-tight uppercase">
+              <h1 className="text-xl sm:text-3xl font-black text-black tracking-tight uppercase">
                 {currentCategory ? currentCategory.replace('-', ' ') : currentSearch ? `Search: "${currentSearch}"` : 'All Products'}
               </h1>
               {meta && (
@@ -266,7 +266,7 @@ function ProductsCatalogContent() {
               )}
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto">
               {/* Mobile Filter Button */}
               <button
                 onClick={() => setIsMobileFilterOpen(true)}
@@ -312,7 +312,7 @@ function ProductsCatalogContent() {
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6">
                 {products.map((p) => (
                   <ProductCard key={p.id} product={p} />
                 ))}

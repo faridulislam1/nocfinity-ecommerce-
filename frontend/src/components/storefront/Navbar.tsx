@@ -35,10 +35,10 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-white border-b border-black/10">
+    <header className="sticky top-0 z-40 bg-white border-b border-black/10 w-full overflow-hidden">
       {/* Figma Top Announcement Bar */}
-      <div className="bg-black text-white text-xs py-2 px-4 text-center font-normal tracking-wide relative flex items-center justify-center">
-        <div className="flex items-center justify-center gap-1.5">
+      <div className="w-full bg-black text-white text-[11px] sm:text-xs py-2 px-3 sm:px-4 text-center font-normal tracking-wide relative flex items-center justify-center">
+        <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-1.5 text-center">
           <span>Sign up and get 20% off your first order.</span>
           <Link href="/register" className="font-semibold underline hover:text-slate-300">
             Sign Up Now
@@ -56,7 +56,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 gap-4 sm:gap-8">
           {/* Mobile hamburger */}
           <div className="flex items-center lg:hidden">

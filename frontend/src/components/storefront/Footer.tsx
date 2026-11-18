@@ -4,9 +4,9 @@ import { Mail } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-[#F0F0F0] text-black pt-24 sm:pt-28 pb-12 relative mt-20">
+    <footer className="bg-[#F0F0F0] text-black pt-24 sm:pt-28 pb-12 relative mt-20 w-full overflow-hidden">
       {/* ================= FIGMA FLOATING NEWSLETTER BANNER ================= */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 absolute -top-20 left-0 right-0">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 absolute -top-20 left-0 right-0">
         <div className="bg-black text-white rounded-3xl p-6 sm:p-10 lg:p-12 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-xl">
           <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight max-w-md leading-tight text-center lg:text-left">
             STAY UPTO DATE ABOUT OUR LATEST OFFERS

@@ -108,16 +108,16 @@ export default function ProductCard({ product }: { product: Product }) {
         </div>
 
         {/* Figma Price & Discount Badge */}
-        <div className="flex items-center gap-2 pt-0.5">
-          <span className="font-black text-base sm:text-xl text-black">
+        <div className="flex flex-wrap items-baseline gap-1.5 sm:gap-2 pt-0.5">
+          <span className="font-black text-sm sm:text-xl text-black">
             ${product.effective_price.toFixed(2)}
           </span>
           {hasDiscount && (
             <>
-              <span className="font-bold text-base sm:text-xl text-black/40 line-through">
+              <span className="font-bold text-xs sm:text-base text-black/40 line-through">
                 ${Number(product.price).toFixed(2)}
               </span>
-              <span className="bg-[#FF3333]/10 text-[#FF3333] font-medium text-[10px] px-2 py-0.5 rounded-full">
+              <span className="bg-[#FF3333]/10 text-[#FF3333] font-medium text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded-full shrink-0">
                 -{discountPercent}%
               </span>
             </>

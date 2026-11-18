@@ -19,8 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} bg-slate-50/30 text-slate-900 antialiased min-h-screen flex flex-col`}>
+    <html lang="en" className="max-w-full overflow-x-hidden">
+      <body className={`${inter.className} bg-slate-50/30 text-slate-900 antialiased min-h-screen flex flex-col w-full max-w-full overflow-x-hidden`}>
         <AuthProvider>
           <AdminAuthProvider>
             <CartProvider>
