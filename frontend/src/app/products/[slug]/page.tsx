@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState, useEffect, use } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { notFound, useParams } from 'next/navigation';
 import Navbar from '@/components/storefront/Navbar';
 import Footer from '@/components/storefront/Footer';
 import ProductCard from '@/components/storefront/ProductCard';
@@ -11,9 +11,9 @@ import { Product } from '@/lib/types';
 import { useCart } from '@/context/cart-context';
 import { Star, Plus, Minus, Check, AlertCircle } from 'lucide-react';
 
-export default function ProductDetailPage({ params }: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = use(params);
-  const slug = resolvedParams.slug;
+export default function ProductDetailPage() {
+  const routeParams = useParams();
+  const slug = (routeParams?.slug as string) || '';
 
   const { addToCart } = useCart();
   const [product, setProduct] = useState<Product | null>(null);

@@ -36,7 +36,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   useEffect(() => {
     if (!isLoading && !adminUser && !isLoginPage) {
-      router.push('/admin/login');
+      router.replace('/admin/login');
     }
   }, [adminUser, isLoading, isLoginPage, router]);
 
@@ -46,14 +46,25 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center text-white text-xs font-semibold">
-        Verifying administrative authorization...
+      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center text-white text-xs font-semibold gap-3">
+        <div className="w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+        <span>Verifying administrative authorization...</span>
       </div>
     );
   }
 
   if (!adminUser) {
-    return null;
+    return (
+      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center text-white text-xs font-semibold gap-4">
+        <p className="text-slate-400">Staff authorization required. Redirecting to login...</p>
+        <Link
+          href="/admin/login"
+          className="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 rounded-xl text-white font-bold transition-all shadow-lg shadow-blue-500/20"
+        >
+          Enter Staff Login
+        </Link>
+      </div>
+    );
   }
 
   // Role-based Nav Items filtered by effective permissions!

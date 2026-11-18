@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('v1')->group(function () {
+    // Unauthenticated fallback route to prevent Symfony RouteNotFoundException
+    Route::get('/login', fn () => response()->json(['success' => false, 'message' => 'Unauthenticated.'], 401))->name('login');
 
     // ==========================================
     // 1. PUBLIC STOREFRONT ROUTES

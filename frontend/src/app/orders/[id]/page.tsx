@@ -1,16 +1,17 @@
 'use client';
 
-import React, { useEffect, useState, use } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import Navbar from '@/components/storefront/Navbar';
 import Footer from '@/components/storefront/Footer';
 import { fetchApi } from '@/lib/api';
 import { Order } from '@/lib/types';
 import { CheckCircle2, Clock, Truck, Package, XCircle, ArrowLeft, ShieldCheck } from 'lucide-react';
 
-export default function OrderDetailsPage({ params }: { params: Promise<{ id: string }> }) {
-  const resolvedParams = use(params);
-  const orderId = resolvedParams.id;
+export default function OrderDetailsPage() {
+  const routeParams = useParams();
+  const orderId = (routeParams?.id as string) || '';
 
   const [order, setOrder] = useState<Order | null>(null);
   const [isLoading, setIsLoading] = useState(true);
