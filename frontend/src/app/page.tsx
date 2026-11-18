@@ -1,69 +1,297 @@
-import Image from "next/image";
+import React from 'react';
+import Link from 'next/link';
+import Navbar from '@/components/storefront/Navbar';
+import Footer from '@/components/storefront/Footer';
+import ProductCard from '@/components/storefront/ProductCard';
+import { Star, CheckCircle, ArrowRight } from 'lucide-react';
+import { Product, Category } from '@/lib/types';
 
-export default function Home() {
+export const dynamic = 'force-dynamic';
+
+async function getHomeData() {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1';
+
+  try {
+    const [featuredRes, categoriesRes, allProductsRes] = await Promise.all([
+      fetch(`${API_URL}/products/featured`, { cache: 'no-store' }),
+      fetch(`${API_URL}/categories`, { cache: 'no-store' }),
+      fetch(`${API_URL}/products?per_page=8`, { cache: 'no-store' }),
+    ]);
+
+    const featured = featuredRes.ok ? (await featuredRes.json()).data || [] : [];
+    const categories = categoriesRes.ok ? (await categoriesRes.json()).data || [] : [];
+    const recentProducts = allProductsRes.ok ? (await allProductsRes.json()).data || [] : [];
+
+    return { featured, categories, recentProducts };
+  } catch (err) {
+    console.error('Error fetching home data:', err);
+    return { featured: [], categories: [], recentProducts: [] };
+  }
+}
+
+export default async function HomePage() {
+  const { featured, categories, recentProducts } = await getHomeData();
+
+  const newArrivals = recentProducts.slice(0, 4);
+  const topSelling = (featured.length > 0 ? featured : recentProducts).slice(0, 4);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <>
+      <Navbar />
+
+      <main className="flex-1 bg-white">
+        {/* ================= FIGMA HERO SECTION ================= */}
+        <section className="bg-[#F2F0F1] relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-16 lg:pt-20 pb-0">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              {/* Left Column: Bold Typography & Stats */}
+              <div className="lg:col-span-7 space-y-6 pb-10 sm:pb-16 text-center lg:text-left">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-black tracking-tight uppercase leading-[1.08]">
+                  FIND PRODUCTS THAT MATCHES YOUR STYLE
+                </h1>
+
+                <p className="text-sm sm:text-base text-black/60 max-w-lg mx-auto lg:mx-0 font-normal leading-relaxed">
+                  Browse through our diverse range of meticulously crafted products, designed to bring out your individuality and cater to your sense of style.
+                </p>
+
+                <div className="pt-2">
+                  <Link
+                    href="/products"
+                    className="inline-block w-full sm:w-auto px-12 py-3.5 bg-black hover:bg-black/85 text-white font-medium rounded-full text-sm transition-all shadow-sm"
+                  >
+                    Shop Now
+                  </Link>
+                </div>
+
+                {/* Figma Stats Counter */}
+                <div className="pt-8 flex flex-wrap items-center justify-center lg:justify-start gap-6 sm:gap-10 divide-x divide-black/10">
+                  <div className="text-left pr-4">
+                    <span className="block text-2xl sm:text-4xl font-extrabold text-black">200+</span>
+                    <span className="text-xs text-black/60">International Brands</span>
+                  </div>
+                  <div className="text-left pl-6 sm:pl-10 pr-4">
+                    <span className="block text-2xl sm:text-4xl font-extrabold text-black">2,000+</span>
+                    <span className="text-xs text-black/60">High-Quality Products</span>
+                  </div>
+                  <div className="text-left pl-6 sm:pl-10">
+                    <span className="block text-2xl sm:text-4xl font-extrabold text-black">30,000+</span>
+                    <span className="text-xs text-black/60">Happy Customers</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column: Hero Image with Star Sparkle Vectors */}
+              <div className="lg:col-span-5 relative flex justify-center">
+                <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-none">
+                  {/* Decorative Stars from Figma */}
+                  <div className="absolute top-6 right-4 sm:right-8 text-black text-4xl sm:text-6xl select-none z-10 animate-pulse">
+                    ✦
+                  </div>
+                  <div className="absolute top-1/2 left-2 text-black text-2xl sm:text-3xl select-none z-10">
+                    ✦
+                  </div>
+
+                  <img
+                    src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80"
+                    alt="Hero Product"
+                    className="w-full h-auto object-contain max-h-[500px] relative z-0"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ================= FIGMA BRAND LOGOS STRIP ================= */}
+        <section className="bg-black py-8 px-4">
+          <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-around gap-8 text-white font-serif tracking-widest text-xl sm:text-2xl uppercase opacity-90 select-none">
+            <span className="hover:opacity-100 transition-opacity">VERSACE</span>
+            <span className="hover:opacity-100 transition-opacity">ZARA</span>
+            <span className="hover:opacity-100 transition-opacity">GUCCI</span>
+            <span className="hover:opacity-100 transition-opacity">PRADA</span>
+            <span className="hover:opacity-100 transition-opacity">Calvin Klein</span>
+          </div>
+        </section>
+
+        {/* ================= FIGMA: NEW ARRIVALS ================= */}
+        <section className="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 sm:mb-14">
+            <h2 className="text-3xl sm:text-5xl font-black text-black tracking-tight uppercase">
+              NEW ARRIVALS
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            {newArrivals.map((product: Product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+
+          <div className="mt-10 sm:mt-12 text-center">
+            <Link
+              href="/products?sort=newest"
+              className="inline-block px-14 py-3 rounded-full border border-black/10 text-xs sm:text-sm font-semibold text-black hover:bg-black hover:text-white transition-all shadow-2xs"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              View All
+            </Link>
+          </div>
+        </section>
+
+        {/* Section Divider */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <hr className="border-black/10" />
+        </div>
+
+        {/* ================= FIGMA: TOP SELLING ================= */}
+        <section className="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 sm:mb-14">
+            <h2 className="text-3xl sm:text-5xl font-black text-black tracking-tight uppercase">
+              TOP SELLING
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            {topSelling.map((product: Product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+
+          <div className="mt-10 sm:mt-12 text-center">
+            <Link
+              href="/products?sort=popular"
+              className="inline-block px-14 py-3 rounded-full border border-black/10 text-xs sm:text-sm font-semibold text-black hover:bg-black hover:text-white transition-all shadow-2xs"
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+              View All
+            </Link>
+          </div>
+        </section>
+
+        {/* ================= FIGMA: BROWSE BY CATEGORY (BENTO GRID) ================= */}
+        <section className="py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-[#F0F0F0] rounded-3xl p-6 sm:p-12 lg:p-16">
+            <div className="text-center mb-10 sm:mb-14">
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-black tracking-tight uppercase">
+                BROWSE BY CATEGORY
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6">
+              {/* Card 1: 4 columns */}
+              <Link
+                href="/products?category=smartphones-tablets"
+                className="md:col-span-4 relative rounded-2xl overflow-hidden bg-white h-52 sm:h-64 p-6 group hover:shadow-lg transition-shadow flex flex-col justify-between"
+              >
+                <h3 className="font-bold text-xl sm:text-2xl text-black z-10">Smartphones</h3>
+                <img
+                  src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&auto=format&fit=crop&q=80"
+                  alt="Smartphones"
+                  className="absolute right-0 bottom-0 w-3/5 h-4/5 object-cover rounded-tl-2xl group-hover:scale-105 transition-transform duration-300"
+                />
+              </Link>
+
+              {/* Card 2: 8 columns */}
+              <Link
+                href="/products?category=audio-headphones"
+                className="md:col-span-8 relative rounded-2xl overflow-hidden bg-white h-52 sm:h-64 p-6 group hover:shadow-lg transition-shadow flex flex-col justify-between"
+              >
+                <h3 className="font-bold text-xl sm:text-2xl text-black z-10">Audio &amp; Studio</h3>
+                <img
+                  src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80"
+                  alt="Audio & Studio"
+                  className="absolute right-0 bottom-0 w-3/5 h-4/5 object-cover rounded-tl-2xl group-hover:scale-105 transition-transform duration-300"
+                />
+              </Link>
+
+              {/* Card 3: 8 columns */}
+              <Link
+                href="/products?category=wearable-tech"
+                className="md:col-span-8 relative rounded-2xl overflow-hidden bg-white h-52 sm:h-64 p-6 group hover:shadow-lg transition-shadow flex flex-col justify-between"
+              >
+                <h3 className="font-bold text-xl sm:text-2xl text-black z-10">Wearable Tech</h3>
+                <img
+                  src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=80"
+                  alt="Wearable Tech"
+                  className="absolute right-0 bottom-0 w-3/5 h-4/5 object-cover rounded-tl-2xl group-hover:scale-105 transition-transform duration-300"
+                />
+              </Link>
+
+              {/* Card 4: 4 columns */}
+              <Link
+                href="/products?category=minimalist-apparel"
+                className="md:col-span-4 relative rounded-2xl overflow-hidden bg-white h-52 sm:h-64 p-6 group hover:shadow-lg transition-shadow flex flex-col justify-between"
+              >
+                <h3 className="font-bold text-xl sm:text-2xl text-black z-10">Apparel</h3>
+                <img
+                  src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&auto=format&fit=crop&q=80"
+                  alt="Minimalist Apparel"
+                  className="absolute right-0 bottom-0 w-3/5 h-4/5 object-cover rounded-tl-2xl group-hover:scale-105 transition-transform duration-300"
+                />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ================= FIGMA: OUR HAPPY CUSTOMERS ================= */}
+        <section className="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 sm:mb-14">
+            <h2 className="text-3xl sm:text-5xl font-black text-black tracking-tight uppercase">
+              OUR HAPPY CUSTOMERS
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Review 1 */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-black/10 space-y-3 bg-white">
+              <div className="flex items-center text-[#FFC633]">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-[#FFC633]" />
+                ))}
+              </div>
+              <div className="flex items-center gap-1.5 font-bold text-black text-base">
+                <span>Sarah M.</span>
+                <CheckCircle className="w-4 h-4 fill-emerald-500 text-white" />
+              </div>
+              <p className="text-xs sm:text-sm text-black/60 leading-relaxed">
+                &ldquo;I&apos;m blown away by the audio quality and build of the Aura headphones! The noise cancellation is unreal and the package arrived within two days.&rdquo;
+              </p>
+            </div>
+
+            {/* Review 2 */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-black/10 space-y-3 bg-white">
+              <div className="flex items-center text-[#FFC633]">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-[#FFC633]" />
+                ))}
+              </div>
+              <div className="flex items-center gap-1.5 font-bold text-black text-base">
+                <span>Alex K.</span>
+                <CheckCircle className="w-4 h-4 fill-emerald-500 text-white" />
+              </div>
+              <p className="text-xs sm:text-sm text-black/60 leading-relaxed">
+                &ldquo;Finding high-end gear that balances minimalism and durability is hard. Nocfinity nailed every single detail, from checkout to daily use.&rdquo;
+              </p>
+            </div>
+
+            {/* Review 3 */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-black/10 space-y-3 bg-white">
+              <div className="flex items-center text-[#FFC633]">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-[#FFC633]" />
+                ))}
+              </div>
+              <div className="flex items-center gap-1.5 font-bold text-black text-base">
+                <span>James L.</span>
+                <CheckCircle className="w-4 h-4 fill-emerald-500 text-white" />
+              </div>
+              <p className="text-xs sm:text-sm text-black/60 leading-relaxed">
+                &ldquo;Seamless Stripe checkout, clean order tracking, and the backpack is genuinely water-resistant. Will definitely order from here again!&rdquo;
+              </p>
+            </div>
+          </div>
+        </section>
       </main>
-    </div>
+
+      <Footer />
+    </>
   );
 }
