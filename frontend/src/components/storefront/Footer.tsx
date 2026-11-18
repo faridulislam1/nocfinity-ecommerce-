@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 absolute -top-20 left-0 right-0">
         <div className="bg-black text-white rounded-3xl p-6 sm:p-10 lg:p-12 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-xl">
           <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight max-w-md leading-tight text-center lg:text-left">
-            STAY UP TO DATE ABOUT OUR LATEST OFFERS
+            STAY UPTO DATE ABOUT OUR LATEST OFFERS
           </h3>
 
           <div className="w-full max-w-sm space-y-3">
@@ -33,11 +33,11 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-6 gap-8 pb-12 border-b border-black/10">
           {/* Brand info */}
           <div className="col-span-2 space-y-4">
-            <Link href="/" className="font-black text-2xl tracking-tighter uppercase text-black">
-              NOCFINITY
+            <Link href="/" className="font-black text-2xl tracking-tighter uppercase text-black font-sans">
+              SHOP.CO
             </Link>
             <p className="text-xs sm:text-sm text-black/60 max-w-xs leading-relaxed">
-              We have products that suit your style and which you&apos;re proud to use. From tech wearables to minimal fashion.
+              We have clothes that suits your style and which you&apos;re proud to wear. From women to men.
             </p>
             <div className="flex items-center gap-3 pt-2 text-black/70">
               <span className="w-8 h-8 rounded-full bg-white flex items-center justify-center hover:bg-black hover:text-white transition-colors cursor-pointer shadow-xs text-xs font-bold">

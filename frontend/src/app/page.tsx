@@ -47,11 +47,11 @@ export default async function HomePage() {
               {/* Left Column: Bold Typography & Stats */}
               <div className="lg:col-span-7 space-y-6 pb-10 sm:pb-16 text-center lg:text-left">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-black tracking-tight uppercase leading-[1.08]">
-                  FIND PRODUCTS THAT MATCHES YOUR STYLE
+                  FIND CLOTHES THAT MATCHES YOUR STYLE
                 </h1>
 
                 <p className="text-sm sm:text-base text-black/60 max-w-lg mx-auto lg:mx-0 font-normal leading-relaxed">
-                  Browse through our diverse range of meticulously crafted products, designed to bring out your individuality and cater to your sense of style.
+                  Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.
                 </p>
 
                 <div className="pt-2">
@@ -84,17 +84,17 @@ export default async function HomePage() {
               <div className="lg:col-span-5 relative flex justify-center">
                 <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-none">
                   {/* Decorative Stars from Figma */}
-                  <div className="absolute top-6 right-4 sm:right-8 text-black text-4xl sm:text-6xl select-none z-10 animate-pulse">
+                  <div className="absolute top-4 right-2 sm:right-6 text-black text-5xl sm:text-7xl select-none z-10 animate-pulse">
                     ✦
                   </div>
-                  <div className="absolute top-1/2 left-2 text-black text-2xl sm:text-3xl select-none z-10">
+                  <div className="absolute top-1/2 left-0 text-black text-3xl sm:text-4xl select-none z-10">
                     ✦
                   </div>
 
                   <img
-                    src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80"
-                    alt="Hero Product"
-                    className="w-full h-auto object-contain max-h-[500px] relative z-0"
+                    src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&auto=format&fit=crop&q=80"
+                    alt="Fashion Models"
+                    className="w-full h-auto object-cover max-h-[520px] rounded-t-3xl relative z-0"
                   />
                 </div>
               </div>
@@ -166,65 +166,65 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* ================= FIGMA: BROWSE BY CATEGORY (BENTO GRID) ================= */}
+        {/* ================= FIGMA: BROWSE BY DRESS STYLE (BENTO GRID) ================= */}
         <section className="py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-[#F0F0F0] rounded-3xl p-6 sm:p-12 lg:p-16">
             <div className="text-center mb-10 sm:mb-14">
-              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-black tracking-tight uppercase">
-                BROWSE BY CATEGORY
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-black tracking-tight uppercase font-sans">
+                BROWSE BY DRESS STYLE
               </h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6">
-              {/* Card 1: 4 columns */}
+              {/* Card 1: Casual (4 cols) */}
               <Link
-                href="/products?category=smartphones-tablets"
+                href="/products?category=casual"
                 className="md:col-span-4 relative rounded-2xl overflow-hidden bg-white h-52 sm:h-64 p-6 group hover:shadow-lg transition-shadow flex flex-col justify-between"
               >
-                <h3 className="font-bold text-xl sm:text-2xl text-black z-10">Smartphones</h3>
+                <h3 className="font-bold text-xl sm:text-2xl text-black z-10">Casual</h3>
                 <img
-                  src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&auto=format&fit=crop&q=80"
-                  alt="Smartphones"
-                  className="absolute right-0 bottom-0 w-3/5 h-4/5 object-cover rounded-tl-2xl group-hover:scale-105 transition-transform duration-300"
+                  src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&auto=format&fit=crop&q=80"
+                  alt="Casual style"
+                  className="absolute right-0 bottom-0 w-3/5 h-full object-cover rounded-tl-2xl group-hover:scale-105 transition-transform duration-300"
                 />
               </Link>
 
-              {/* Card 2: 8 columns */}
+              {/* Card 2: Formal (8 cols) */}
               <Link
-                href="/products?category=audio-headphones"
+                href="/products?category=formal"
                 className="md:col-span-8 relative rounded-2xl overflow-hidden bg-white h-52 sm:h-64 p-6 group hover:shadow-lg transition-shadow flex flex-col justify-between"
               >
-                <h3 className="font-bold text-xl sm:text-2xl text-black z-10">Audio &amp; Studio</h3>
+                <h3 className="font-bold text-xl sm:text-2xl text-black z-10">Formal</h3>
                 <img
-                  src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80"
-                  alt="Audio & Studio"
-                  className="absolute right-0 bottom-0 w-3/5 h-4/5 object-cover rounded-tl-2xl group-hover:scale-105 transition-transform duration-300"
+                  src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&auto=format&fit=crop&q=80"
+                  alt="Formal style"
+                  className="absolute right-0 bottom-0 w-3/5 h-full object-cover rounded-tl-2xl group-hover:scale-105 transition-transform duration-300"
                 />
               </Link>
 
-              {/* Card 3: 8 columns */}
+              {/* Card 3: Party (8 cols) */}
               <Link
-                href="/products?category=wearable-tech"
+                href="/products?category=party"
                 className="md:col-span-8 relative rounded-2xl overflow-hidden bg-white h-52 sm:h-64 p-6 group hover:shadow-lg transition-shadow flex flex-col justify-between"
               >
-                <h3 className="font-bold text-xl sm:text-2xl text-black z-10">Wearable Tech</h3>
+                <h3 className="font-bold text-xl sm:text-2xl text-black z-10">Party</h3>
                 <img
-                  src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=80"
-                  alt="Wearable Tech"
-                  className="absolute right-0 bottom-0 w-3/5 h-4/5 object-cover rounded-tl-2xl group-hover:scale-105 transition-transform duration-300"
+                  src="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=800&auto=format&fit=crop&q=80"
+                  alt="Party style"
+                  className="absolute right-0 bottom-0 w-3/5 h-full object-cover rounded-tl-2xl group-hover:scale-105 transition-transform duration-300"
                 />
               </Link>
 
-              {/* Card 4: 4 columns */}
+              {/* Card 4: Gym (4 cols) */}
               <Link
-                href="/products?category=minimalist-apparel"
+                href="/products?category=gym"
                 className="md:col-span-4 relative rounded-2xl overflow-hidden bg-white h-52 sm:h-64 p-6 group hover:shadow-lg transition-shadow flex flex-col justify-between"
               >
-                <h3 className="font-bold text-xl sm:text-2xl text-black z-10">Apparel</h3>
+                <h3 className="font-bold text-xl sm:text-2xl text-black z-10">Gym</h3>
                 <img
-                  src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&auto=format&fit=crop&q=80"
-                  alt="Minimalist Apparel"
-                  className="absolute right-0 bottom-0 w-3/5 h-4/5 object-cover rounded-tl-2xl group-hover:scale-105 transition-transform duration-300"
+                  src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&auto=format&fit=crop&q=80"
+                  alt="Gym style"
+                  className="absolute right-0 bottom-0 w-3/5 h-full object-cover rounded-tl-2xl group-hover:scale-105 transition-transform duration-300"
                 />
               </Link>
             </div>
@@ -234,14 +234,14 @@ export default async function HomePage() {
         {/* ================= FIGMA: OUR HAPPY CUSTOMERS ================= */}
         <section className="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-10 sm:mb-14">
-            <h2 className="text-3xl sm:text-5xl font-black text-black tracking-tight uppercase">
+            <h2 className="text-3xl sm:text-5xl font-black text-black tracking-tight uppercase font-sans">
               OUR HAPPY CUSTOMERS
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Review 1 */}
-            <div className="p-6 sm:p-8 rounded-2xl border border-black/10 space-y-3 bg-white">
+            {/* Review 1: Sarah M. */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-black/10 space-y-3 bg-white hover:shadow-md transition-shadow">
               <div className="flex items-center text-[#FFC633]">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-[#FFC633]" />
@@ -249,15 +249,15 @@ export default async function HomePage() {
               </div>
               <div className="flex items-center gap-1.5 font-bold text-black text-base">
                 <span>Sarah M.</span>
-                <CheckCircle className="w-4 h-4 fill-emerald-500 text-white" />
+                <CheckCircle className="w-4 h-4 text-emerald-500 fill-emerald-500 text-white" />
               </div>
               <p className="text-xs sm:text-sm text-black/60 leading-relaxed">
-                &ldquo;I&apos;m blown away by the audio quality and build of the Aura headphones! The noise cancellation is unreal and the package arrived within two days.&rdquo;
+                &ldquo;I&apos;m blown away by the quality and style of the clothes I received from Shop.co. From casual wear to tie-dye shirts, every piece has exceeded my expectations.&rdquo;
               </p>
             </div>
 
-            {/* Review 2 */}
-            <div className="p-6 sm:p-8 rounded-2xl border border-black/10 space-y-3 bg-white">
+            {/* Review 2: Alex K. */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-black/10 space-y-3 bg-white hover:shadow-md transition-shadow">
               <div className="flex items-center text-[#FFC633]">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-[#FFC633]" />
@@ -265,15 +265,15 @@ export default async function HomePage() {
               </div>
               <div className="flex items-center gap-1.5 font-bold text-black text-base">
                 <span>Alex K.</span>
-                <CheckCircle className="w-4 h-4 fill-emerald-500 text-white" />
+                <CheckCircle className="w-4 h-4 text-emerald-500 fill-emerald-500 text-white" />
               </div>
               <p className="text-xs sm:text-sm text-black/60 leading-relaxed">
-                &ldquo;Finding high-end gear that balances minimalism and durability is hard. Nocfinity nailed every single detail, from checkout to daily use.&rdquo;
+                &ldquo;Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes.&rdquo;
               </p>
             </div>
 
-            {/* Review 3 */}
-            <div className="p-6 sm:p-8 rounded-2xl border border-black/10 space-y-3 bg-white">
+            {/* Review 3: James L. */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-black/10 space-y-3 bg-white hover:shadow-md transition-shadow">
               <div className="flex items-center text-[#FFC633]">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-[#FFC633]" />
@@ -281,10 +281,10 @@ export default async function HomePage() {
               </div>
               <div className="flex items-center gap-1.5 font-bold text-black text-base">
                 <span>James L.</span>
-                <CheckCircle className="w-4 h-4 fill-emerald-500 text-white" />
+                <CheckCircle className="w-4 h-4 text-emerald-500 fill-emerald-500 text-white" />
               </div>
               <p className="text-xs sm:text-sm text-black/60 leading-relaxed">
-                &ldquo;Seamless Stripe checkout, clean order tracking, and the backpack is genuinely water-resistant. Will definitely order from here again!&rdquo;
+                &ldquo;As someone who&apos;s always on the lookout for unique fashion pieces, I&apos;m thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with trends.&rdquo;
               </p>
             </div>
           </div>

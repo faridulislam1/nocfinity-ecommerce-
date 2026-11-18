@@ -165,6 +165,70 @@ function ProductsCatalogContent() {
             </form>
           </div>
 
+          {/* Colors (Figma Hallmark) */}
+          <div className="space-y-3 pb-5 border-b border-black/10">
+            <h3 className="font-bold text-sm text-black">Colors</h3>
+            <div className="grid grid-cols-5 gap-2.5">
+              {[
+                { name: 'Green', hex: '#00C12B' },
+                { name: 'Red', hex: '#F50606' },
+                { name: 'Yellow', hex: '#F5DD06' },
+                { name: 'Orange', hex: '#F57906' },
+                { name: 'Sky Blue', hex: '#06CAF5' },
+                { name: 'Blue', hex: '#063AF5' },
+                { name: 'Purple', hex: '#7D06F5' },
+                { name: 'Pink', hex: '#F506A4' },
+                { name: 'White', hex: '#FFFFFF', border: true },
+                { name: 'Black', hex: '#000000' },
+              ].map((c) => (
+                <button
+                  key={c.name}
+                  type="button"
+                  title={c.name}
+                  onClick={() => updateFilters({ search: c.name.toLowerCase() })}
+                  style={{ backgroundColor: c.hex }}
+                  className={`w-8 h-8 rounded-full cursor-pointer hover:scale-110 transition-transform ${
+                    c.border ? 'border border-black/20' : ''
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Size (Figma Hallmark) */}
+          <div className="space-y-3 pb-5 border-b border-black/10">
+            <h3 className="font-bold text-sm text-black">Size</h3>
+            <div className="flex flex-wrap gap-2">
+              {[
+                'XX-Small', 'X-Small', 'Small', 'Medium', 'Large', 'X-Large', 'XX-Large', '3X-Large', '4X-Large'
+              ].map((sz) => (
+                <button
+                  key={sz}
+                  type="button"
+                  onClick={() => updateFilters({ search: sz.toLowerCase() })}
+                  className="px-3 py-1.5 bg-[#F0F0F0] hover:bg-black hover:text-white text-black/60 rounded-full text-xs font-medium transition-colors"
+                >
+                  {sz}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Dress Style (Figma Hallmark) */}
+          <div className="space-y-2 pb-5 border-b border-black/10 text-xs">
+            <h3 className="font-bold text-sm text-black pb-1">Dress Style</h3>
+            {['Casual', 'Formal', 'Party', 'Gym'].map((style) => (
+              <button
+                key={style}
+                onClick={() => updateFilters({ search: style.toLowerCase() })}
+                className="w-full text-left py-1.5 flex items-center justify-between text-black/60 hover:text-black transition-colors"
+              >
+                <span>{style}</span>
+                <span>&gt;</span>
+              </button>
+            ))}
+          </div>
+
           {/* Availability */}
           <div className="pb-4 border-b border-black/10">
             <label className="flex items-center gap-2 cursor-pointer text-xs font-medium text-black">

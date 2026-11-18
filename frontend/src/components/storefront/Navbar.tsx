@@ -37,11 +37,23 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 bg-white border-b border-black/10">
       {/* Figma Top Announcement Bar */}
-      <div className="bg-black text-white text-xs py-2 px-4 text-center font-normal tracking-wide flex items-center justify-center gap-1.5">
-        <span>Sign up and get 20% off your first order.</span>
-        <Link href="/register" className="font-semibold underline hover:text-slate-300">
-          Sign Up Now
-        </Link>
+      <div className="bg-black text-white text-xs py-2 px-4 text-center font-normal tracking-wide relative flex items-center justify-center">
+        <div className="flex items-center justify-center gap-1.5">
+          <span>Sign up and get 20% off your first order.</span>
+          <Link href="/register" className="font-semibold underline hover:text-slate-300">
+            Sign Up Now
+          </Link>
+        </div>
+        <button
+          onClick={(e) => {
+            const bar = (e.currentTarget.parentElement as HTMLElement);
+            if (bar) bar.style.display = 'none';
+          }}
+          className="absolute right-4 text-white/70 hover:text-white hidden sm:block"
+          aria-label="Close announcement"
+        >
+          <X className="w-3.5 h-3.5" />
+        </button>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,10 +69,10 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Figma Logo: NOCFINITY (Integral CF / Heavy Bold Style) */}
-          <div className="flex items-center">
-            <Link href="/" className="font-black text-2xl sm:text-3xl tracking-tighter text-black uppercase">
-              NOCFINITY
+          {/* Figma Logo: SHOP.CO (Exact Figma Brand Hallmark) */}
+          <div className="flex items-center gap-2">
+            <Link href="/" className="font-black text-2xl sm:text-3xl tracking-tighter text-black uppercase font-sans">
+              SHOP.CO
             </Link>
           </div>
 
