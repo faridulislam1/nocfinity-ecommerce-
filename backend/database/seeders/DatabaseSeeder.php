@@ -280,7 +280,7 @@ class DatabaseSeeder extends Seeder
                 'parent_id' => $parentMen->id,
                 'name' => 'Jeans',
                 'description' => 'Skinny fit denim, faded wash trousers, and relaxed vintage jeans.',
-                'image' => 'https://images.unsplash.com/photo-1542272604-780c96856592?w=800&auto=format&fit=crop&q=80',
+                'image' => 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800&auto=format&fit=crop&q=80',
                 'is_active' => true,
                 'sort_order' => 5,
             ]
@@ -365,8 +365,8 @@ class DatabaseSeeder extends Seeder
                 'short_description' => 'Deep indigo stretch denim with tapered skinny silhouette and reinforced rivets.',
                 'description' => 'Built with high-recovery elastane denim that contours without restricting movement. Vintage copper hardware, five-pocket styling, and signature contrast stitching.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1542272604-780c96856592?w=800&auto=format&fit=crop&q=80',
                     'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1582552938357-32b906df40cb?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -458,7 +458,7 @@ class DatabaseSeeder extends Seeder
                 'description' => '90s skater-inspired relaxed fit with generous leg opening. Durable 12oz denim with subtle fading and stone wash texture.',
                 'images' => [
                     'https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=800&auto=format&fit=crop&q=80',
-                    'https://images.unsplash.com/photo-1542272604-780c96856592?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -475,8 +475,8 @@ class DatabaseSeeder extends Seeder
                 'short_description' => 'Washed black denim with whiskering accents and slim tailored legs.',
                 'description' => 'The essential daily jeans. Softened stretch cotton blend with subtle distressing around thighs and knees.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800&auto=format&fit=crop&q=80',
-                    'https://images.unsplash.com/photo-1542272604-780c96856592?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1584370848010-d7fe6bc767ec?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1604176354204-9268737828e4?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
 
@@ -567,7 +567,8 @@ class DatabaseSeeder extends Seeder
                 'short_description' => 'Sky blue performance knit polo featuring navy contrast collar and cuff bands.',
                 'description' => 'Moisture-wicking technical cotton blend. Great on the golf course or around the city.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1625910513413-5de77a644917?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
