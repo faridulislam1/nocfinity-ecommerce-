@@ -1,4 +1,14 @@
-const API_BASE_URL = (process.env.NEXT_PUBLIC_API_URL || '/api/v1').replace(/\/$/, '');
+export function getApiBaseUrl(): string {
+  if (typeof window !== 'undefined') {
+    return (process.env.NEXT_PUBLIC_API_URL || '/api/v1').replace(/\/$/, '');
+  }
+  return (
+    process.env.BACKEND_INTERNAL_URL ||
+    (process.env.NEXT_PUBLIC_API_URL?.startsWith('http')
+      ? process.env.NEXT_PUBLIC_API_URL
+      : 'http://127.0.0.1:8000/api/v1')
+  ).replace(/\/$/, '');
+}
 
 export function getCartSessionId(): string {
   if (typeof window === 'undefined') return '';
@@ -65,7 +75,8 @@ export async function fetchApi<T = any>(
     }
   }
 
-  const url = endpoint.startsWith('http') ? endpoint : `${API_BASE_URL}${endpoint.startsWith('/') ? '' : '/'}${endpoint}`;
+  const baseUrl = getApiBaseUrl();
+  const url = endpoint.startsWith('http') ? endpoint : `${baseUrl}${endpoint.startsWith('/') ? '' : '/'}${endpoint}`;
 
   try {
     const response = await fetch(url, {

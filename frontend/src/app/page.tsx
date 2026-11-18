@@ -9,7 +9,11 @@ import { Product, Category } from '@/lib/types';
 export const dynamic = 'force-dynamic';
 
 async function getHomeData() {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1';
+  const API_URL =
+    process.env.BACKEND_INTERNAL_URL ||
+    (process.env.NEXT_PUBLIC_API_URL?.startsWith('http')
+      ? process.env.NEXT_PUBLIC_API_URL
+      : 'http://127.0.0.1:8000/api/v1');
 
   try {
     const [featuredRes, categoriesRes, allProductsRes] = await Promise.all([
