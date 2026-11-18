@@ -20,6 +20,7 @@ export default function AdminDashboardPage() {
   const [chartData, setChartData] = useState<SalesChartItem[]>([]);
   const [recentOrders, setRecentOrders] = useState<Order[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
   useEffect(() => {
     async function loadDashboard() {
@@ -50,8 +51,11 @@ export default function AdminDashboardPage() {
     );
   }
 
-  // Calculate highest revenue in chart data for bar chart scaling
+  // Calculate summary metrics for the 30-day velocity chart
   const maxRevenue = Math.max(...chartData.map((d) => d.revenue), 100);
+  const total30DayRevenue = chartData.reduce((acc, d) => acc + d.revenue, 0);
+  const total30DayOrders = chartData.reduce((acc, d) => acc + d.orders_count, 0);
+  const avgDailyRevenue = total30DayRevenue / (chartData.length || 30);
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -139,45 +143,115 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* ================= 30-DAY SALES CHART ================= */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-xs space-y-4">
-        <div className="flex items-center justify-between">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-xs space-y-6">
+        {/* Header with Title and Summary Stats */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800 gap-4">
           <div>
             <h3 className="font-bold text-slate-900 dark:text-white text-base flex items-center gap-2">
-              <TrendingUp className="w-4 h-4 text-blue-600" />
+              <TrendingUp className="w-5 h-5 text-blue-500" />
               30-Day Sales &amp; Revenue Velocity
             </h3>
-            <p className="text-xs text-slate-400">Daily revenue breakdown from fulfilled Stripe transactions</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+              Daily revenue trajectory and volume across fulfilled transactions
+            </p>
+          </div>
+
+          {/* Quick Metrics Badges */}
+          <div className="flex items-center gap-3">
+            <div className="px-3 py-1.5 rounded-xl bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800/60 text-right">
+              <span className="text-[10px] text-blue-600 dark:text-blue-400 font-semibold uppercase block">30D Revenue</span>
+              <span className="text-sm font-black text-blue-700 dark:text-blue-300">${total30DayRevenue.toFixed(2)}</span>
+            </div>
+            <div className="px-3 py-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/60 text-right">
+              <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold uppercase block">Peak Day</span>
+              <span className="text-sm font-black text-emerald-700 dark:text-emerald-300">${maxRevenue.toFixed(2)}</span>
+            </div>
+            <div className="px-3 py-1.5 rounded-xl bg-purple-50 dark:bg-purple-950/60 border border-purple-200 dark:border-purple-800/60 text-right hidden md:block">
+              <span className="text-[10px] text-purple-600 dark:text-purple-400 font-semibold uppercase block">Daily Avg</span>
+              <span className="text-sm font-black text-purple-700 dark:text-purple-300">${avgDailyRevenue.toFixed(2)}</span>
+            </div>
           </div>
         </div>
 
-        {/* Bar Chart Representation */}
-        <div className="pt-6">
-          <div className="h-44 flex items-end gap-1.5 sm:gap-2 overflow-x-auto pb-2">
-            {chartData.map((bar, idx) => {
-              const heightPercent = Math.max(8, Math.round((bar.revenue / maxRevenue) * 100));
-              return (
-                <div key={idx} className="flex-1 min-w-[14px] flex flex-col items-center group relative">
-                  {/* Tooltip on hover */}
-                  <div className="absolute -top-10 hidden group-hover:flex flex-col items-center bg-slate-900 text-white text-[10px] px-2 py-1 rounded-md z-20 whitespace-nowrap shadow-lg">
-                    <span>{bar.date}: <strong>${bar.revenue.toFixed(2)}</strong> ({bar.orders_count} orders)</span>
-                  </div>
+        {/* High-Contrast Interactive Chart Canvas with Y-Axis */}
+        <div className="pt-2">
+          <div className="relative flex">
+            {/* Y-Axis Guide Labels on the Left */}
+            <div className="w-16 shrink-0 h-52 flex flex-col justify-between text-[10px] font-mono text-slate-400 select-none pb-7 pr-2 text-right">
+              <span>${Math.round(maxRevenue)}</span>
+              <span>${Math.round(maxRevenue * 0.66)}</span>
+              <span>${Math.round(maxRevenue * 0.33)}</span>
+              <span>$0</span>
+            </div>
 
-                  <div
-                    style={{ height: `${heightPercent}%` }}
-                    className={`w-full rounded-t-md transition-all ${
-                      bar.revenue > 0
-                        ? 'bg-blue-600 group-hover:bg-blue-500'
-                        : 'bg-slate-200 dark:bg-slate-800'
-                    }`}
-                  />
-                  {idx % 4 === 0 && (
-                    <span className="text-[9px] text-slate-400 mt-2 truncate max-w-[32px]">
-                      {bar.label}
+            {/* Chart Area with Horizontal Dotted Grid Lines */}
+            <div className="flex-1 relative h-52 flex flex-col justify-between">
+              {/* Dotted Grid lines */}
+              <div className="absolute inset-x-0 top-0 border-b border-dashed border-slate-200 dark:border-slate-800 pointer-events-none" />
+              <div className="absolute inset-x-0 top-1/3 border-b border-dashed border-slate-200 dark:border-slate-800 pointer-events-none" />
+              <div className="absolute inset-x-0 top-2/3 border-b border-dashed border-slate-200 dark:border-slate-800 pointer-events-none" />
+              <div className="absolute inset-x-0 bottom-7 border-b border-slate-300 dark:border-slate-700 pointer-events-none" />
+
+              {/* Bars Row */}
+              <div className="h-44 flex items-end gap-1 sm:gap-2 pb-0 z-10">
+                {chartData.map((bar, idx) => {
+                  const isHovered = hoveredIdx === idx;
+                  const hasRevenue = bar.revenue > 0;
+                  // Ensure visible height for active revenue (at least 15% to 100%)
+                  const heightPercent = hasRevenue
+                    ? Math.max(14, Math.round((bar.revenue / maxRevenue) * 100))
+                    : 3;
+
+                  const tooltipPos =
+                    idx < 4
+                      ? 'left-0'
+                      : idx > chartData.length - 5
+                      ? 'right-0'
+                      : 'left-1/2 -translate-x-1/2';
+
+                  return (
+                    <div
+                      key={idx}
+                      onMouseEnter={() => setHoveredIdx(idx)}
+                      onMouseLeave={() => setHoveredIdx(null)}
+                      className="flex-1 h-full flex flex-col justify-end items-center group relative cursor-pointer"
+                    >
+                      {/* Floating Tooltip */}
+                      {isHovered && (
+                        <div className={`absolute -top-14 z-30 flex flex-col items-center bg-slate-900 border border-slate-700 text-white text-[11px] px-3 py-1.5 rounded-lg whitespace-nowrap shadow-xl shadow-black/50 pointer-events-none animate-in fade-in zoom-in-95 duration-150 ${tooltipPos}`}>
+                          <span className="font-semibold text-cyan-400">{bar.label} ({bar.date})</span>
+                          <span className="font-black text-white text-xs">${bar.revenue.toFixed(2)}</span>
+                          <span className="text-[10px] text-slate-400">{bar.orders_count} completed orders</span>
+                        </div>
+                      )}
+
+                      {/* Bar Graphic */}
+                      <div
+                        style={{ height: `${heightPercent}%` }}
+                        className={`w-full rounded-t-md transition-all duration-200 ${
+                          hasRevenue
+                            ? isHovered
+                              ? 'bg-gradient-to-t from-blue-500 via-sky-400 to-cyan-300 shadow-md shadow-cyan-400/50 scale-x-110'
+                              : 'bg-gradient-to-t from-blue-600 via-blue-500 to-cyan-400 shadow-xs shadow-blue-500/30'
+                            : 'bg-slate-200 dark:bg-slate-800/80 hover:bg-slate-300 dark:hover:bg-slate-700/80'
+                        }`}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* X-Axis Date Labels Row */}
+              <div className="h-7 flex items-center justify-between text-[10px] font-medium text-slate-400 pt-1 select-none">
+                {chartData
+                  .filter((_, i) => i % 5 === 0 || i === chartData.length - 1)
+                  .map((b, i) => (
+                    <span key={i} className="truncate">
+                      {b.label}
                     </span>
-                  )}
-                </div>
-              );
-            })}
+                  ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

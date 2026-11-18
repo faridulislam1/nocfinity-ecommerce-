@@ -1010,6 +1010,66 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
+        // Additional 30-Day Velocity Orders (Populates the 30-Day Sales & Revenue Chart)
+        $historicalDays = [1, 2, 4, 7, 9, 11, 14, 16, 18, 21, 23, 25, 27, 28];
+        $allSeedProducts = Product::all();
+        foreach ($historicalDays as $idx => $daysAgo) {
+            $p = $allSeedProducts->get($idx % $allSeedProducts->count());
+            $qty = ($idx % 2) + 1;
+            $sub = $p->price * $qty;
+            $tax = round($sub * 0.08, 2);
+            $total = $sub + $tax;
+
+            $hOrder = Order::updateOrCreate(
+                ['order_number' => 'ORD-2026-000' . (110 + $idx)],
+                [
+                    'user_id' => $idx % 2 === 0 ? $customer->id : $customer2->id,
+                    'customer_name' => $idx % 2 === 0 ? $customer->name : $customer2->name,
+                    'customer_email' => $idx % 2 === 0 ? $customer->email : $customer2->email,
+                    'customer_phone' => '+1 (555) 019-' . (1000 + $idx),
+                    'shipping_address' => '100 Market St Suite ' . (200 + $idx),
+                    'shipping_city' => 'San Francisco',
+                    'shipping_state' => 'CA',
+                    'shipping_postal_code' => '94105',
+                    'shipping_country' => 'US',
+                    'subtotal' => $sub,
+                    'discount_amount' => 0.00,
+                    'coupon_code' => null,
+                    'shipping_cost' => 0.00,
+                    'tax_amount' => $tax,
+                    'total_amount' => $total,
+                    'status' => 'delivered',
+                    'payment_status' => 'paid',
+                    'payment_method' => 'stripe',
+                    'created_at' => Carbon::now()->subDays($daysAgo)->setHour(14)->setMinute(30),
+                ]
+            );
+
+            OrderItem::updateOrCreate(
+                ['order_id' => $hOrder->id, 'product_id' => $p->id],
+                [
+                    'product_name' => $p->name,
+                    'product_sku' => $p->sku,
+                    'unit_price' => $p->price,
+                    'quantity' => $qty,
+                    'total_price' => $sub,
+                ]
+            );
+
+            Payment::updateOrCreate(
+                ['order_id' => $hOrder->id],
+                [
+                    'payment_method' => 'stripe',
+                    'transaction_id' => 'ch_sample_hist_' . (100 + $idx),
+                    'amount' => $total,
+                    'currency' => 'usd',
+                    'status' => 'succeeded',
+                    'payload' => ['brand' => 'visa', 'last4' => '4242'],
+                    'created_at' => Carbon::now()->subDays($daysAgo),
+                ]
+            );
+        }
+
         // 8. Log initial activity
         ActivityLog::create([
             'user_id' => $superAdmin->id,
