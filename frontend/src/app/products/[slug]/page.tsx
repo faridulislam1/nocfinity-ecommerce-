@@ -29,6 +29,7 @@ export default function ProductDetailPage() {
 
   useEffect(() => {
     async function loadProduct() {
+      if (!slug) return;
       setIsLoading(true);
       const res = await fetchApi<{ product: Product; related_products: Product[] }>(`/products/${slug}`);
       if (res.success && res.data) {
@@ -56,7 +57,21 @@ export default function ProductDetailPage() {
   }
 
   if (!product) {
-    return notFound();
+    return (
+      <>
+        <Navbar />
+        <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4">
+          <h1 className="text-2xl font-black text-black mb-2">Product Not Found</h1>
+          <p className="text-black/60 max-w-md text-sm mb-6">
+            We couldn't find the product you're looking for.
+          </p>
+          <Link href="/" className="px-6 py-3 bg-black text-white rounded-full font-medium text-sm">
+            Return to Shop
+          </Link>
+        </div>
+        <Footer />
+      </>
+    );
   }
 
   const isOutOfStock = product.stock <= 0;

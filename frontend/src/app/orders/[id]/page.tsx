@@ -19,6 +19,7 @@ export default function OrderDetailsPage() {
 
   useEffect(() => {
     async function loadOrder() {
+      if (!orderId) return;
       setIsLoading(true);
       const queryParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
       const emailParam = queryParams?.get('email');
