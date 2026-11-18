@@ -20,7 +20,7 @@ class CheckoutInventoryTest extends TestCase
 
     public function test_checkout_rejects_out_of_stock_product(): void
     {
-        $outOfStockProduct = Product::where('stock', 0)->first();
+        $outOfStockProduct = Product::where('stock', 0)->first() ?? tap(Product::first(), fn($p) => $p->update(['stock' => 0]));
 
         $response = $this->postJson('/api/v1/checkout/confirm', [
             'items' => [

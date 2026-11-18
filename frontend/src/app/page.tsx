@@ -63,17 +63,17 @@ export default async function HomePage() {
                   </Link>
                 </div>
 
-                {/* Figma Stats Counter */}
-                <div className="pt-8 flex flex-wrap items-center justify-center lg:justify-start gap-6 sm:gap-10 divide-x divide-black/10">
+                {/* Figma Stats Counter (Desktop row / Mobile 2-cols + centered 3rd) */}
+                <div className="pt-8 grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-10 sm:divide-x divide-black/10">
                   <div className="text-left pr-4">
                     <span className="block text-2xl sm:text-4xl font-extrabold text-black">200+</span>
                     <span className="text-xs text-black/60">International Brands</span>
                   </div>
-                  <div className="text-left pl-6 sm:pl-10 pr-4">
+                  <div className="text-left pl-4 sm:pl-10 pr-4 border-l sm:border-l-0 border-black/10">
                     <span className="block text-2xl sm:text-4xl font-extrabold text-black">2,000+</span>
                     <span className="text-xs text-black/60">High-Quality Products</span>
                   </div>
-                  <div className="text-left pl-6 sm:pl-10">
+                  <div className="col-span-2 sm:col-span-1 text-center sm:text-left sm:pl-10 pt-4 sm:pt-0 border-t sm:border-t-0 border-black/10">
                     <span className="block text-2xl sm:text-4xl font-extrabold text-black">30,000+</span>
                     <span className="text-xs text-black/60">Happy Customers</span>
                   </div>

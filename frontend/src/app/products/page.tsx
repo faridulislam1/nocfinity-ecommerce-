@@ -357,44 +357,183 @@ function ProductsCatalogContent() {
         </section>
       </div>
 
-      {/* Mobile Filters Drawer (390px) */}
+      {/* Figma Mobile Filters Drawer (390px - Column 7 in Figma) */}
       {isMobileFilterOpen && (
         <div className="fixed inset-0 z-50 overflow-hidden lg:hidden">
-          <div className="absolute inset-0 bg-black/50" onClick={() => setIsMobileFilterOpen(false)} />
-          <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
-            <div className="w-screen max-w-xs bg-white p-6 overflow-y-auto space-y-6">
-              <div className="flex items-center justify-between pb-4 border-b border-black/10">
-                <h3 className="font-bold text-black text-base">Filters</h3>
-                <button onClick={() => setIsMobileFilterOpen(false)}>
-                  <X className="w-5 h-5 text-black" />
-                </button>
-              </div>
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-xs" onClick={() => setIsMobileFilterOpen(false)} />
+          <div className="fixed inset-y-0 right-0 max-w-full flex">
+            <div className="w-screen max-w-xs sm:max-w-sm bg-white p-6 overflow-y-auto space-y-6 flex flex-col justify-between">
+              <div className="space-y-6">
+                <div className="flex items-center justify-between pb-4 border-b border-black/10">
+                  <h3 className="font-bold text-black text-xl">Filters</h3>
+                  <button onClick={() => setIsMobileFilterOpen(false)} className="p-1 text-black/60 hover:text-black">
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
 
-              <div className="space-y-2 text-xs">
-                <span className="font-bold uppercase tracking-wider block text-black/50">Categories</span>
-                {categories.map((c) => (
+                {/* Categories */}
+                <div className="space-y-2 pb-5 border-b border-black/10 text-xs">
                   <button
-                    key={c.id}
                     onClick={() => {
-                      updateFilters({ category: c.slug });
+                      updateFilters({ category: null });
                       setIsMobileFilterOpen(false);
                     }}
-                    className="w-full text-left py-1 text-black/80"
+                    className={`w-full text-left py-1.5 flex items-center justify-between ${
+                      !currentCategory ? 'font-bold text-black' : 'text-black/60'
+                    }`}
                   >
-                    {c.name}
+                    <span>All Products</span>
+                    <span>&gt;</span>
                   </button>
-                ))}
+                  {categories.map((c) => (
+                    <button
+                      key={c.id}
+                      onClick={() => {
+                        updateFilters({ category: c.slug });
+                        setIsMobileFilterOpen(false);
+                      }}
+                      className={`w-full text-left py-1.5 flex items-center justify-between ${
+                        currentCategory === c.slug ? 'font-bold text-black' : 'text-black/60'
+                      }`}
+                    >
+                      <span>{c.name}</span>
+                      <span>&gt;</span>
+                    </button>
+                  ))}
+                </div>
+
+                {/* Price */}
+                <div className="space-y-3 pb-5 border-b border-black/10">
+                  <h3 className="font-bold text-sm text-black">Price ($)</h3>
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    <input
+                      type="number"
+                      placeholder="Min ($)"
+                      value={minPriceInput}
+                      onChange={(e) => setMinPriceInput(e.target.value)}
+                      className="w-full px-3 py-2 bg-[#F0F0F0] rounded-xl text-black placeholder:text-black/40 text-xs"
+                    />
+                    <input
+                      type="number"
+                      placeholder="Max ($)"
+                      value={maxPriceInput}
+                      onChange={(e) => setMaxPriceInput(e.target.value)}
+                      className="w-full px-3 py-2 bg-[#F0F0F0] rounded-xl text-black placeholder:text-black/40 text-xs"
+                    />
+                  </div>
+                </div>
+
+                {/* Colors (Figma Hallmark) */}
+                <div className="space-y-3 pb-5 border-b border-black/10">
+                  <h3 className="font-bold text-sm text-black">Colors</h3>
+                  <div className="grid grid-cols-5 gap-2.5">
+                    {[
+                      { name: 'Green', hex: '#00C12B' },
+                      { name: 'Red', hex: '#F50606' },
+                      { name: 'Yellow', hex: '#F5DD06' },
+                      { name: 'Orange', hex: '#F57906' },
+                      { name: 'Sky Blue', hex: '#06CAF5' },
+                      { name: 'Blue', hex: '#063AF5' },
+                      { name: 'Purple', hex: '#7D06F5' },
+                      { name: 'Pink', hex: '#F506A4' },
+                      { name: 'White', hex: '#FFFFFF', border: true },
+                      { name: 'Black', hex: '#000000' },
+                    ].map((c) => (
+                      <button
+                        key={c.name}
+                        type="button"
+                        title={c.name}
+                        onClick={() => {
+                          updateFilters({ search: c.name.toLowerCase() });
+                          setIsMobileFilterOpen(false);
+                        }}
+                        style={{ backgroundColor: c.hex }}
+                        className={`w-8 h-8 rounded-full cursor-pointer hover:scale-110 transition-transform ${
+                          c.border ? 'border border-black/20' : ''
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Size (Figma Hallmark) */}
+                <div className="space-y-3 pb-5 border-b border-black/10">
+                  <h3 className="font-bold text-sm text-black">Size</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      'XX-Small', 'X-Small', 'Small', 'Medium', 'Large', 'X-Large', 'XX-Large', '3X-Large', '4X-Large'
+                    ].map((sz) => (
+                      <button
+                        key={sz}
+                        type="button"
+                        onClick={() => {
+                          updateFilters({ search: sz.toLowerCase() });
+                          setIsMobileFilterOpen(false);
+                        }}
+                        className="px-3 py-1.5 bg-[#F0F0F0] hover:bg-black hover:text-white text-black/60 rounded-full text-xs font-medium transition-colors"
+                      >
+                        {sz}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Dress Style (Figma Hallmark) */}
+                <div className="space-y-2 pb-5 border-b border-black/10 text-xs">
+                  <h3 className="font-bold text-sm text-black pb-1">Dress Style</h3>
+                  {['Casual', 'Formal', 'Party', 'Gym'].map((style) => (
+                    <button
+                      key={style}
+                      onClick={() => {
+                        updateFilters({ search: style.toLowerCase() });
+                        setIsMobileFilterOpen(false);
+                      }}
+                      className="w-full text-left py-1.5 flex items-center justify-between text-black/60 hover:text-black transition-colors"
+                    >
+                      <span>{style}</span>
+                      <span>&gt;</span>
+                    </button>
+                  ))}
+                </div>
+
+                {/* In Stock Only */}
+                <div className="pb-2">
+                  <label className="flex items-center gap-2 cursor-pointer text-xs font-medium text-black">
+                    <input
+                      type="checkbox"
+                      checked={currentInStock}
+                      onChange={(e) => updateFilters({ in_stock: e.target.checked ? 'true' : null })}
+                      className="rounded-sm accent-black"
+                    />
+                    <span>In Stock Only</span>
+                  </label>
+                </div>
               </div>
 
-              <button
-                onClick={() => {
-                  clearAllFilters();
-                  setIsMobileFilterOpen(false);
-                }}
-                className="w-full py-2.5 bg-black text-white rounded-full text-xs font-semibold"
-              >
-                Reset Filters
-              </button>
+              {/* Bottom Buttons */}
+              <div className="pt-4 space-y-2 border-t border-black/10">
+                <button
+                  onClick={() => {
+                    updateFilters({
+                      min_price: minPriceInput || null,
+                      max_price: maxPriceInput || null,
+                    });
+                    setIsMobileFilterOpen(false);
+                  }}
+                  className="w-full py-3.5 bg-black text-white rounded-full text-xs font-semibold hover:bg-black/85 transition-colors"
+                >
+                  Apply Filter
+                </button>
+                <button
+                  onClick={() => {
+                    clearAllFilters();
+                    setIsMobileFilterOpen(false);
+                  }}
+                  className="w-full py-2.5 bg-[#F0F0F0] text-black/70 rounded-full text-xs font-semibold hover:bg-black/10 transition-colors"
+                >
+                  Reset Filters
+                </button>
+              </div>
             </div>
           </div>
         </div>

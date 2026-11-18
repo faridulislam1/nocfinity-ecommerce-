@@ -20,6 +20,8 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
   const [selectedImage, setSelectedImage] = useState<string>('');
   const [quantity, setQuantity] = useState<number>(1);
+  const [selectedColor, setSelectedColor] = useState<string>('olive');
+  const [selectedSize, setSelectedSize] = useState<string>('Large');
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isAdding, setIsAdding] = useState<boolean>(false);
   const [added, setAdded] = useState<boolean>(false);
@@ -105,11 +107,26 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
 
           {/* ================= FIGMA DETAIL GRID ================= */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            {/* Left: Gallery (Thumbnails Column + Main Image Container) */}
-            <div className="lg:col-span-7 flex flex-col-reverse sm:flex-row gap-4">
+            {/* Left: Gallery (Figma Desktop: vertical thumbs on left / Mobile: thumbs below main) */}
+            <div className="lg:col-span-7 flex flex-col sm:flex-row-reverse gap-4">
+              {/* Main Image */}
+              <div className="flex-1 rounded-2xl bg-[#F0EEED] overflow-hidden relative aspect-square max-h-[500px]">
+                <img
+                  src={selectedImage || 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80'}
+                  alt={product.name}
+                  className="w-full h-full object-cover p-2"
+                />
+
+                {isOutOfStock && (
+                  <div className="absolute top-4 left-4 bg-black text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                    Out of Stock
+                  </div>
+                )}
+              </div>
+
               {/* Thumbnails */}
               {product.images && product.images.length > 1 && (
-                <div className="flex sm:flex-col gap-3 overflow-x-auto sm:overflow-visible shrink-0">
+                <div className="flex sm:flex-col gap-3 justify-center sm:justify-start overflow-x-auto sm:overflow-visible shrink-0">
                   {product.images.map((img) => (
                     <button
                       key={img.id}
@@ -123,21 +140,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
                   ))}
                 </div>
               )}
-
-              {/* Main Image */}
-              <div className="flex-1 rounded-2xl bg-[#F0EEED] overflow-hidden relative aspect-square max-h-[500px]">
-                <img
-                  src={selectedImage || 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80'}
-                  alt={product.name}
-                  className="w-full h-full object-cover p-2"
-                />
-
-                {isOutOfStock && (
-                  <div className="absolute top-4 left-4 bg-black text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
-                    Out of Stock
-                  </div>
-                )}
-              </div>
             </div>
 
             {/* Right: Product Info & Buy Controls */}
@@ -184,34 +186,50 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
 
               <hr className="border-black/10 pt-1" />
 
-              {/* Select Colors (Figma Hallmark) */}
+              {/* Select Colors (Figma Hallmark with active checkmark) */}
               <div className="space-y-2">
                 <span className="text-xs text-black/60 font-medium block">Select Colors</span>
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-slate-900 ring-2 ring-offset-2 ring-black cursor-pointer" />
-                  <div className="w-8 h-8 rounded-full bg-stone-700 cursor-pointer" />
-                  <div className="w-8 h-8 rounded-full bg-slate-500 cursor-pointer" />
+                  {[
+                    { id: 'olive', hex: '#4F4631' },
+                    { id: 'navy', hex: '#31344F' },
+                    { id: 'slate', hex: '#314F4A' },
+                  ].map((col) => (
+                    <button
+                      key={col.id}
+                      type="button"
+                      onClick={() => setSelectedColor(col.id)}
+                      style={{ backgroundColor: col.hex }}
+                      className={`w-9 h-9 rounded-full flex items-center justify-center cursor-pointer transition-transform hover:scale-105 ${
+                        selectedColor === col.id ? 'ring-2 ring-offset-2 ring-black' : ''
+                      }`}
+                    >
+                      {selectedColor === col.id && <Check className="w-4 h-4 text-white" />}
+                    </button>
+                  ))}
                 </div>
               </div>
 
               <hr className="border-black/10" />
 
-              {/* Choose Size (Figma Hallmark) */}
+              {/* Choose Size (Figma Hallmark with active pill) */}
               <div className="space-y-2">
                 <span className="text-xs text-black/60 font-medium block">Choose Size</span>
                 <div className="flex flex-wrap gap-2.5">
-                  <span className="px-4 py-2 bg-[#F0F0F0] rounded-full text-xs font-medium text-black/60 cursor-pointer hover:bg-black hover:text-white transition-colors">
-                    Small
-                  </span>
-                  <span className="px-4 py-2 bg-[#F0F0F0] rounded-full text-xs font-medium text-black/60 cursor-pointer hover:bg-black hover:text-white transition-colors">
-                    Medium
-                  </span>
-                  <span className="px-4 py-2 bg-black text-white rounded-full text-xs font-medium cursor-pointer">
-                    Large
-                  </span>
-                  <span className="px-4 py-2 bg-[#F0F0F0] rounded-full text-xs font-medium text-black/60 cursor-pointer hover:bg-black hover:text-white transition-colors">
-                    X-Large
-                  </span>
+                  {['Small', 'Medium', 'Large', 'X-Large'].map((sz) => (
+                    <button
+                      key={sz}
+                      type="button"
+                      onClick={() => setSelectedSize(sz)}
+                      className={`px-5 py-2.5 rounded-full text-xs font-medium transition-all ${
+                        selectedSize === sz
+                          ? 'bg-black text-white shadow-xs'
+                          : 'bg-[#F0F0F0] text-black/60 hover:bg-black/10'
+                      }`}
+                    >
+                      {sz}
+                    </button>
+                  ))}
                 </div>
               </div>
 
@@ -311,17 +329,74 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
               )}
 
               {activeTab === 'reviews' && (
-                <div className="space-y-4 max-w-2xl">
-                  <div className="flex items-center gap-3">
-                    <span className="text-3xl font-black text-black">{Number(product.rating || 4.5).toFixed(1)}</span>
-                    <div>
-                      <div className="flex items-center text-[#FFC633]">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-[#FFC633]" />
-                        ))}
-                      </div>
-                      <span className="text-xs text-black/50">Based on {product.reviews_count || 12} customer ratings</span>
+                <div className="space-y-6">
+                  {/* Reviews Header from Figma */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-baseline gap-2">
+                      <h3 className="font-bold text-black text-lg sm:text-xl">All Reviews</h3>
+                      <span className="text-xs text-black/40">({product.reviews_count || 451})</span>
                     </div>
+
+                    <div className="flex items-center gap-2">
+                      <button className="px-4 py-2 bg-black text-white text-xs font-semibold rounded-full hover:bg-black/85 transition-colors">
+                        Write a Review
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* 2-Column Review Grid (Figma Screen 3 & 4) */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {[
+                      {
+                        name: 'Samantha D.',
+                        date: 'Posted on August 14, 2023',
+                        rating: 5,
+                        text: 'I absolutely love this t-shirt! The design is unique and the fabric feels so soft and comfortable. As a fellow designer, I appreciate the attention to detail. You can definitely feel the quality.',
+                      },
+                      {
+                        name: 'Alex M.',
+                        date: 'Posted on August 15, 2023',
+                        rating: 4,
+                        text: 'The t-shirt exceeded my expectations! The colors are vibrant and the print quality is top-notch. Being a UI/UX designer myself, I\'m quite picky about aesthetics, and this t-shirt definitely gets a thumbs up from me.',
+                      },
+                      {
+                        name: 'Ethan R.',
+                        date: 'Posted on August 16, 2023',
+                        rating: 5,
+                        text: 'This t-shirt is a must-have for anyone who appreciates good design. The minimalistic yet stylish pattern caught my eye, and the fit is perfect. I can see the designer\'s touch in every aspect.',
+                      },
+                      {
+                        name: 'Olivia P.',
+                        date: 'Posted on August 17, 2023',
+                        rating: 5,
+                        text: 'As a UI/UX enthusiast, I value simplicity and functionality. This t-shirt not only represents those principles but also feels great to wear. It\'s evident that the designer poured their creativity into making this t-shirt stand out.',
+                      },
+                    ].map((rev) => (
+                      <div
+                        key={rev.name}
+                        className="p-6 rounded-2xl border border-black/10 space-y-3 bg-white"
+                      >
+                        <div className="flex items-center text-[#FFC633]">
+                          {[...Array(rev.rating)].map((_, i) => (
+                            <Star key={i} className="w-4 h-4 fill-[#FFC633]" />
+                          ))}
+                        </div>
+                        <div className="flex items-center gap-1.5 font-bold text-black text-base">
+                          <span>{rev.name}</span>
+                          <span className="w-4 h-4 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[10px]">
+                            ✓
+                          </span>
+                        </div>
+                        <p className="text-xs text-black/60 leading-relaxed">&ldquo;{rev.text}&rdquo;</p>
+                        <span className="text-[11px] text-black/40 font-medium block pt-1">{rev.date}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="text-center pt-4">
+                    <button className="px-10 py-3 rounded-full border border-black/10 text-xs font-semibold text-black hover:bg-black hover:text-white transition-all">
+                      Load More Reviews
+                    </button>
                   </div>
                 </div>
               )}
