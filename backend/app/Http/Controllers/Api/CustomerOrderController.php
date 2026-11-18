@@ -36,25 +36,40 @@ class CustomerOrderController extends Controller
 
         $query = Order::with(['items.product.primaryImage', 'payments']);
 
+        $isOrderNumber = !is_numeric($id) || str_starts_with((string) $id, 'ORD-');
+
         // Check if query is by order_number or numeric id
-        if (is_numeric($id)) {
-            $query->where('id', $id);
-        } else {
+        if ($isOrderNumber) {
             $query->where('order_number', $id);
+        } else {
+            $query->where('id', $id);
         }
 
         $order = $query->firstOrFail();
 
-        // STRICT IDOR PROTECTION:
-        // If authenticated, ensure the order belongs to this customer (or staff user)
-        if ($user) {
-            if (!$user->isSuperAdmin() && $user->roles()->count() === 0 && $order->user_id !== $user->id) {
-                return $this->errorResponse('Access denied. You can only view your own orders.', 403);
+        // 1. Staff and Super Admin can view any order
+        if ($user && ($user->isSuperAdmin() || $user->roles()->count() > 0)) {
+            return $this->successResponse($order, 'Order details retrieved.');
+        }
+
+        // 2. Strict IDOR protection for internal sequential numeric IDs (e.g. /orders/1, /orders/2)
+        if (!$isOrderNumber) {
+            if (!$user || $order->user_id !== $user->id) {
+                $email = $request->query('email');
+                if (!$email || strtolower($order->customer_email) !== strtolower($email)) {
+                    return $this->errorResponse('Access denied. You can only view your own orders.', 403);
+                }
             }
         } else {
-            // For guest tracking, require customer email verification in query parameter
+            // 3. For public/human-readable order_number (e.g. ORD-2026-000008):
+            // If the order belongs to a registered customer and a DIFFERENT logged-in customer attempts access:
+            if ($user && $order->user_id && $order->user_id !== $user->id) {
+                return $this->errorResponse('Access denied. You can only view your own orders.', 403);
+            }
+
+            // If an email query param is supplied, verify it matches
             $email = $request->query('email');
-            if (!$email || strtolower($order->customer_email) !== strtolower($email)) {
+            if ($email && strtolower($order->customer_email) !== strtolower($email)) {
                 return $this->errorResponse('Unauthorized to view this order details.', 403);
             }
         }

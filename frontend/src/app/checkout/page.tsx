@@ -129,7 +129,7 @@ export default function CheckoutPage() {
     if (confirmRes.success && confirmRes.data?.order) {
       await clearCart();
       const orderNumber = confirmRes.data.order.order_number;
-      router.push(`/orders/${orderNumber}?success=true`);
+      router.push(`/orders/${orderNumber}?success=true&email=${encodeURIComponent(email)}`);
     } else {
       setErrorMessage(confirmRes.message || 'Checkout failed. Please check stock and details.');
     }

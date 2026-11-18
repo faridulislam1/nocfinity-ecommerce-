@@ -19,7 +19,13 @@ export default function OrderDetailsPage({ params }: { params: Promise<{ id: str
   useEffect(() => {
     async function loadOrder() {
       setIsLoading(true);
-      const res = await fetchApi<Order>(`/orders/${orderId}`, { authType: 'customer' });
+      const queryParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
+      const emailParam = queryParams?.get('email');
+      const endpoint = emailParam
+        ? `/orders/${orderId}?email=${encodeURIComponent(emailParam)}`
+        : `/orders/${orderId}`;
+
+      const res = await fetchApi<Order>(endpoint, { authType: 'customer' });
       if (res.success && res.data) {
         setOrder(res.data);
       } else {
