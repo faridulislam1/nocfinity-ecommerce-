@@ -1,0 +1,31 @@
+# Root .gitignore
+node_modules/
+vendor/
+.env
+.env.backup
+.env.production
+.DS_Store
+Thumbs.db
+
+# Frontend
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/.env*.local
+
+# Backend
+backend/vendor/
+backend/.env
+backend/.env.backup
+backend/.env.production
+backend/storage/*.key
+backend/storage/logs/*.log
+backend/storage/framework/cache/*
+backend/storage/framework/sessions/*
+backend/storage/framework/views/*
+backend/storage/framework/testing/*
+backend/public/hot
+backend/public/storage
+backend/database/database.sqlite
+backend/database/database.sqlite-journal
