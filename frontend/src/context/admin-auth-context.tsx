@@ -22,6 +22,10 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
 
   const refreshAdmin = async () => {
+    if (typeof window === 'undefined') {
+      setIsLoading(false);
+      return;
+    }
     const savedToken = localStorage.getItem('admin_token');
     if (!savedToken) {
       setAdminUser(null);
@@ -31,15 +35,22 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     setAdminToken(savedToken);
-    const res = await fetchApi<User>('/admin/auth/me', { authType: 'admin' });
-    if (res.success && res.data) {
-      setAdminUser(res.data);
-    } else {
+    try {
+      const res = await fetchApi<User>('/admin/auth/me', { authType: 'admin' });
+      if (res.success && res.data) {
+        setAdminUser(res.data);
+      } else {
+        localStorage.removeItem('admin_token');
+        setAdminUser(null);
+        setAdminToken(null);
+      }
+    } catch {
       localStorage.removeItem('admin_token');
       setAdminUser(null);
       setAdminToken(null);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   useEffect(() => {

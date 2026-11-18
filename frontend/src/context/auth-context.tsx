@@ -22,6 +22,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
 
   const refreshUser = async () => {
+    if (typeof window === 'undefined') {
+      setIsLoading(false);
+      return;
+    }
     const savedToken = localStorage.getItem('customer_token');
     if (!savedToken) {
       setUser(null);
@@ -31,15 +35,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     setToken(savedToken);
-    const res = await fetchApi<User>('/auth/me', { authType: 'customer' });
-    if (res.success && res.data) {
-      setUser(res.data);
-    } else {
+    try {
+      const res = await fetchApi<User>('/auth/me', { authType: 'customer' });
+      if (res.success && res.data) {
+        setUser(res.data);
+      } else {
+        localStorage.removeItem('customer_token');
+        setUser(null);
+        setToken(null);
+      }
+    } catch {
       localStorage.removeItem('customer_token');
       setUser(null);
       setToken(null);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   useEffect(() => {
