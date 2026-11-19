@@ -231,27 +231,52 @@ All endpoints are versioned under `/api/v1/`:
 
 ## 🧪 Automated Test Suite
 
-Automated feature tests are provided in `backend/tests/Feature`:
+Both automated Feature tests and Unit tests are provided in `backend/tests`:
 
 ```bash
 cd backend
 php artisan test
 ```
 
-### Verified Test Cases:
-1. `RbacMiddlewareTest`:
-   - `test_unauthenticated_request_to_admin_is_unauthorized` (401 check)
-   - `test_regular_customer_cannot_access_admin_endpoints` (403 check)
-   - `test_super_admin_can_access_admin_endpoints` (200 pass)
-   - `test_order_manager_cannot_create_products_without_permission` (Granular permission check)
-2. `CheckoutInventoryTest`:
-   - `test_checkout_rejects_out_of_stock_product` (Prevents overselling)
-   - `test_stock_decrements_when_order_is_confirmed` (Stock logic verification)
-   - `test_cancelling_order_restores_stock` (Stock restoration on cancellation)
-3. `IdorOrderSecurityTest`:
-   - `test_customer_cannot_view_another_customers_order` (403 IDOR prevention check)
-   - `test_anonymous_guest_cannot_view_registered_order_without_matching_email` (403 check)
-   - `test_customer_can_view_own_order` (200 ownership verification)
+### 1. Unit Tests (`backend/tests/Unit`):
+- **`ProductTest`**:
+  - `test_effective_price_returns_discount_price_when_valid`: Verifies discounted pricing logic.
+  - `test_effective_price_returns_regular_price_when_no_discount`: Verifies fallback to base price.
+  - `test_effective_price_ignores_discount_if_greater_than_regular_price`: Prevents negative pricing bugs.
+  - `test_effective_price_ignores_zero_or_negative_discount`: Validates boundary handling.
+  - `test_in_stock_returns_true_when_stock_greater_than_zero`: Validates stock status boolean.
+  - `test_in_stock_returns_false_when_stock_is_zero_or_negative`: Validates out-of-stock state.
+- **`CouponTest`**:
+  - `test_percentage_discount_calculation`: Verifies accurate percentage deductions.
+  - `test_fixed_discount_calculation`: Verifies flat dollar discount amounts.
+  - `test_fixed_discount_does_not_exceed_subtotal`: Prevents discount overflow beyond cart value.
+  - `test_coupon_validation_fails_when_inactive`: Tests inactive coupon rejection.
+  - `test_coupon_validation_fails_when_below_min_order_amount`: Enforces minimum cart threshold.
+  - `test_coupon_validation_fails_when_expired`: Verifies date expiration enforcement.
+  - `test_coupon_validation_fails_when_usage_limit_reached`: Enforces redemption cap limits.
+  - `test_coupon_validation_succeeds_when_all_conditions_met`: Verifies valid coupon flow.
+- **`OrderNumberGeneratorTest`**:
+  - `test_order_number_matches_expected_format`: Enforces regex format `ORD-YYYY-XXXXXX`.
+  - `test_order_numbers_are_unique`: Ensures collision-resistant order identifiers.
+- **`UserRbacUnitTest`**:
+  - `test_super_admin_has_permission_returns_true_for_any_slug`: Verifies wildcard privilege bypass.
+  - `test_regular_user_without_roles_has_no_permissions`: Ensures default deny principle.
+  - `test_user_with_role_has_only_assigned_permissions`: Tests granular permission evaluation.
+
+### 2. Feature Tests (`backend/tests/Feature`):
+- **`RbacMiddlewareTest`**:
+  - `test_unauthenticated_request_to_admin_is_unauthorized` (401 check)
+  - `test_regular_customer_cannot_access_admin_endpoints` (403 check)
+  - `test_super_admin_can_access_admin_endpoints` (200 pass)
+  - `test_order_manager_cannot_create_products_without_permission` (Granular permission check)
+- **`CheckoutInventoryTest`**:
+  - `test_checkout_rejects_out_of_stock_product` (Prevents overselling)
+  - `test_stock_decrements_when_order_is_confirmed` (Stock logic verification)
+  - `test_cancelling_order_restores_stock` (Stock restoration on cancellation)
+- **`IdorOrderSecurityTest`**:
+  - `test_customer_cannot_view_another_customers_order` (403 IDOR prevention check)
+  - `test_anonymous_guest_cannot_view_registered_order_without_matching_email` (403 check)
+  - `test_customer_can_view_own_order` (200 ownership verification)
 
 ---
 
