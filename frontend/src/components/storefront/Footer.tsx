@@ -4,10 +4,10 @@ import { Mail } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-[#F0F0F0] text-black pt-24 sm:pt-28 pb-12 relative mt-20 w-full overflow-hidden">
+    <footer className="bg-[#F0F0F0] text-black relative mt-24 sm:mt-32 w-full">
       {/* ================= FIGMA FLOATING NEWSLETTER BANNER ================= */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 absolute -top-20 left-0 right-0">
-        <div className="bg-black text-white rounded-3xl p-6 sm:p-10 lg:p-12 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-xl">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -translate-y-1/2 -mb-16 sm:-mb-20 relative z-10">
+        <div className="bg-black text-white rounded-3xl p-6 sm:p-10 lg:p-12 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-2xl">
           <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight max-w-md leading-tight text-center lg:text-left">
             STAY UPTO DATE ABOUT OUR LATEST OFFERS
           </h3>
@@ -29,7 +29,7 @@ export default function Footer() {
       </div>
 
       {/* Main Footer Links */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 pt-6 sm:pt-8">
         <div className="grid grid-cols-2 md:grid-cols-6 gap-8 pb-12 border-b border-black/10">
           {/* Brand info */}
           <div className="col-span-2 space-y-4">
