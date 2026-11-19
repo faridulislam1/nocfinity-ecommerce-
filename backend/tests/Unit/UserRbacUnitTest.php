@@ -65,3 +65,4 @@ class UserRbacUnitTest extends TestCase
         $this->assertFalse($user->hasPermission('orders.delete'));
     }
 }
+

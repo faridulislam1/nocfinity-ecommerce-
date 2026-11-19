@@ -18,3 +18,4 @@ class OrderNumberGeneratorTest extends TestCase
         $this->assertMatchesRegularExpression("/^ORD-{$year}-\d{6}$/", $orderNumber);
     }
 }
+

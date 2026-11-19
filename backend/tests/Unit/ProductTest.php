@@ -71,3 +71,4 @@ class ProductTest extends TestCase
         $this->assertFalse($product->in_stock);
     }
 }
+
