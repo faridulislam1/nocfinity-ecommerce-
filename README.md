@@ -248,6 +248,10 @@ php artisan test
    - `test_checkout_rejects_out_of_stock_product` (Prevents overselling)
    - `test_stock_decrements_when_order_is_confirmed` (Stock logic verification)
    - `test_cancelling_order_restores_stock` (Stock restoration on cancellation)
+3. `IdorOrderSecurityTest`:
+   - `test_customer_cannot_view_another_customers_order` (403 IDOR prevention check)
+   - `test_anonymous_guest_cannot_view_registered_order_without_matching_email` (403 check)
+   - `test_customer_can_view_own_order` (200 ownership verification)
 
 ---
 

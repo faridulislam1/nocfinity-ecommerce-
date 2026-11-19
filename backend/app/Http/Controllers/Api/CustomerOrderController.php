@@ -62,15 +62,26 @@ class CustomerOrderController extends Controller
             }
         } else {
             // 3. For public/human-readable order_number (e.g. ORD-2026-000008):
-            // If the order belongs to a registered customer and a DIFFERENT logged-in customer attempts access:
-            if ($user && $order->user_id && $order->user_id !== $user->id) {
-                return $this->errorResponse('Access denied. You can only view your own orders.', 403);
-            }
+            // If the order belongs to a registered customer:
+            if ($order->user_id) {
+                // Another authenticated customer cannot access this order
+                if ($user && $order->user_id !== $user->id) {
+                    return $this->errorResponse('Access denied. You can only view your own orders.', 403);
+                }
 
-            // If an email query param is supplied, verify it matches
-            $email = $request->query('email');
-            if ($email && strtolower($order->customer_email) !== strtolower($email)) {
-                return $this->errorResponse('Unauthorized to view this order details.', 403);
+                // If accessed anonymously without logging in, verify the matching email
+                if (!$user) {
+                    $email = $request->query('email');
+                    if (!$email || strtolower($order->customer_email) !== strtolower($email)) {
+                        return $this->errorResponse('Access denied. Authentication or matching email required to view this order.', 403);
+                    }
+                }
+            } else {
+                // If it was a guest order and an email query param is supplied, verify it matches
+                $email = $request->query('email');
+                if ($email && strtolower($order->customer_email) !== strtolower($email)) {
+                    return $this->errorResponse('Unauthorized to view this order details.', 403);
+                }
             }
         }
 
