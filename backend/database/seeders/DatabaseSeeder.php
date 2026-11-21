@@ -1071,7 +1071,10 @@ class DatabaseSeeder extends Seeder
             );
         }
 
-        // 8. Log initial activity
+        // 8. Seed 54 Additional Category-Wise Products
+        $this->call(AdditionalProductsSeeder::class);
+
+        // 9. Log initial activity
         ActivityLog::create([
             'user_id' => $superAdmin->id,
             'action' => 'SYSTEM_INIT',
