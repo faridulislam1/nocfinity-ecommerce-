@@ -43,7 +43,6 @@ class AdditionalProductsSeeder extends Seeder
                 'description' => 'Dyed with custom mineral pigments to produce distinct texture on every piece. 100% premium heavyweight 240 GSM combed cotton.',
                 'images' => [
                     'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format&fit=crop&q=80',
-                    'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -94,7 +93,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Yarn-dyed horizontal navy and ecru vintage skater stripes.',
                 'description' => 'Features contrast ribbed crew collar and reinforced double-needle hems. Breathable and comfortable for warm afternoons.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -111,7 +110,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Single spade chest pocket tee with raw edge roll sleeve trims.',
                 'description' => 'Garment-washed slub jersey texture with subtle tonal marling. Regular length designed to sit at mid-hip.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -128,7 +127,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'High-density screen printed futuristic typography on pitch black cotton.',
                 'description' => 'Contemporary techwear graphic aesthetic with crack-resistant plastisol inks. Relaxed contemporary streetwear fit.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
 
@@ -181,7 +180,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Natural beige flax linen blend summer shorts with relaxed leg.',
                 'description' => 'Pure breathable luxury for beachfront trips or warm city strolls. Pre-washed for optimal softness against the skin.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -198,7 +197,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Vintage stone washed rigid denim shorts with subtle distressed hems.',
                 'description' => 'Classic 5-pocket denim styling with copper rivet reinforcements and metal button fly closure.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1565084888279-aca607ecce0c?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -215,7 +214,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Coral gradient water-repellent performance swim shorts with mesh lining.',
                 'description' => 'Fast-drying technical nylon fabric with secure velcro back pocket and elastic waistband with braided cords.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -232,7 +231,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Double-layered athletic open hole mesh shorts with striped knit hem bands.',
                 'description' => '90s hardwood inspired silhouette featuring deep zipper side pockets for carrying phones securely on court.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1544441893-675973e31985?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
 
@@ -251,7 +250,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Thick brushed cotton flannel shirt in classic crimson and black tartan check.',
                 'description' => 'Double-brushed inside and out for supreme thermal comfort. Features twin button-flap chest pockets and curved hem.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -268,7 +267,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Caramel brown velvety corduroy shirt jacket with tortoiseshell buttons.',
                 'description' => 'Substantial 12-wale cotton corduroy designed to be styled as a lightweight jacket or mid-layer over tees.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -285,7 +284,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Band-collar breathable linen shirt in clean sky blue chambray weave.',
                 'description' => 'Refined minimalism without the restriction of traditional collar stays. Roll-tab sleeves and pearlescent buttons.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1604695573706-53170668f6a6?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1589310243389-96a5483213a8?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -319,7 +318,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Rinse wash indigo denim shirt with pointed front and back western yokes.',
                 'description' => 'Authentic mother-of-pearl snap fasteners and dual sawtooth flap chest pockets for true heritage appeal.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -389,7 +388,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Navy, forest green, and white panelled 90s vintage athletic track jacket.',
                 'description' => 'Silky nylon outer with soft cotton jersey lining. Elasticated cuffs and drawstring hem toggle.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1578587018452-892bacefd3f2?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -406,7 +405,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Mocha brown relaxed hoodie with tonal micro embroidery logo on chest.',
                 'description' => 'Garment-dyed for a rich depth of tone. Seamless side construction with hidden kangaroo seam pockets.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -423,7 +422,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Oatmeal heather boxy crewneck sweatshirt with ribbed triangle neck insert.',
                 'description' => 'Crafted on circular knitting looms to eliminate side seams. Densely brushed inner lining for cloud-like softness.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -440,7 +439,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'All-black water-repellent tech fleece hoodie with 3M reflective seam details.',
                 'description' => 'Featuring water-sealed zipper chest pouch and integrated balaclava face-mask hood lining for urban stealth.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
 
@@ -476,7 +475,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Slim tapered stretch denim with ribbed accordion biker knee panels.',
                 'description' => 'Hand-abraded distress detailing with backing patches. Premium 2% elastane blend for effortless mobility.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -493,7 +492,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Stay-black sulfur dyed slim jeans engineered to resist color fading over time.',
                 'description' => 'Deep saturated black warp and weft yarns with tonal matte hardware. A foundational piece for monochrome wardrobes.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1475180098004-ca77a66827be?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -510,7 +509,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Relaxed utility denim with hammer loop and dual side tool pockets.',
                 'description' => 'Triple-stitched felled seams throughout with reinforced rear pockets. Relaxed straight leg fits naturally over boots.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1517445312882-bc9910d016b7?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1584370848010-d7fe6bc767ec?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -527,7 +526,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Ultra relaxed wide leg puddle jeans in pale bleach wash denim.',
                 'description' => 'Designed with extra length to stack effortlessly over retro sneakers. Heavy 14oz non-stretch 100% cotton.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1555689502-c4b22d76c56f?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -544,7 +543,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Smart casual hybrid chino cut from soft washed lightweight denim.',
                 'description' => 'Slant front pockets and clean rear welt pockets combine the look of a trouser with the relaxed vibe of denim.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1511556532299-8f662fc26c06?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
 
@@ -563,7 +562,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Honeycomb texture organic cotton crewneck thermal in off-white bone.',
                 'description' => 'Traps body warmth while remaining breathable. Features ribbed cuffs and double-stitched hem.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -580,7 +579,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'British heritage zip bomber jacket in khaki with tartan plaid body lining.',
                 'description' => 'Stand-up two-button funnel collar, raglan sleeves, and umbrella-inspired back storm yoke.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -597,7 +596,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Buttonless open v-neck knit polo in sage green ribbed cotton blend.',
                 'description' => 'Mid-century Italian resort elegance with textured vertical ribbing. Breathable and effortlessly refined.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -614,7 +613,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Matte black padded canvas vest with dual 3D gusseted cargo pockets.',
                 'description' => 'Layering staple with two-way heavy metal zipper and lightweight synthetic insulation.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1479064555552-3ef4979f8908?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -631,7 +630,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Double front pleated trousers with fluid drape in muted taupe beige.',
                 'description' => 'Modern relaxed tailoring with hidden inner drawstrings and deep slash side pockets.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -648,7 +647,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Two-piece matching hoodie and sweatpants set in soft sand oatmeal.',
                 'description' => 'Heavy brushed interior provides luxury comfort for downtime or travel days.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
 
@@ -667,7 +666,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Single-breasted 100% Australian merino wool blazer with notch lapels.',
                 'description' => 'Half-canvas chest construction contours naturally to your frame. Flap pockets and dual rear vents.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -684,7 +683,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => '6-on-2 button double-breasted suit jacket in rich midnight navy wool.',
                 'description' => 'Sharp peak lapels with pick-stitch detailing and horn buttons. Fully lined with cupro silk.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -701,7 +700,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => '120s two-ply Egyptian cotton dress shirt with French cuffs for cufflinks.',
                 'description' => 'Non-iron finish preserves sharp creases all day long. Mother-of-pearl buttons and removable brass collar stays.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -718,7 +717,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Formal black trousers with satin side piping and adjustable waist side tabs.',
                 'description' => 'Clean waistband without belt loops for classic black-tie aesthetic. Tailored through thighs with subtle taper.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1505022610485-0249ba5b3675?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -735,7 +734,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Single-button evening tuxedo jacket with lustrous black satin shawl lapel.',
                 'description' => 'Jetted pockets and satin-covered buttons. The quintessential black-tie attire for galas and weddings.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1592878904946-b3cd8ae243d0?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -752,7 +751,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Knee-length wool cashmere blend overcoat in timeless monochrome herringbone.',
                 'description' => 'Substantial thermal weight designed to wear comfortably over suits and knitwear.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1559582798-678dfc71ccd8?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
 
@@ -788,7 +787,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Gold lurex threaded floral jacquard evening shirt with spread collar.',
                 'description' => 'Catches the ambient light effortlessly on the dance floor. Semi-sheer lightweight woven drape.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -805,7 +804,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Heavy moto jacket with diagonal zipper closure and silver metallic hardware.',
                 'description' => 'Grained vegan leather with quilted shoulder accents, zippered sleeve cuffs, and belt buckle waist.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -822,7 +821,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Ultra-soft silky viscose camp shirt featuring allover animal print.',
                 'description' => 'Fluid and breathable with an open resort collar. Pairs with black tailored trousers or skinny denim.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1516914943479-89db7d9ae7f2?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -839,7 +838,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Midnight blue woven jacket with embedded micro-glitter specks.',
                 'description' => 'Subtle elegance that reveals its sparkle under party spotlights. Peak lapels and single button closure.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -856,7 +855,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Deep emerald green heavy satin short-sleeve shirt with pearly buttons.',
                 'description' => 'Liquid-like drape that resists creasing throughout the night. Side vents and boxy relaxed fit.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
 
@@ -892,7 +891,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Tapered athletic sweatpants with zippered ankle cuffs and secure zip pockets.',
                 'description' => 'Engineered for agility, running, and heavy squat sessions. Breathable knee panels and anti-odor fabric treatment.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -909,7 +908,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Deep armhole bodybuilding stringer tank in heather charcoal jersey.',
                 'description' => 'Allows maximum shoulder mobility for bench press and overhead lifts. Quick-drying and ultralight.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -926,7 +925,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Woven lightweight outer shell with built-in spandex liner and phone pocket.',
                 'description' => 'Towel loop at back waistband and reflective side accents for night running safety. Zero chafe construction.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -943,7 +942,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Brushed thermal interior athletic long sleeve with thumbhole sleeves.',
                 'description' => 'Keeps your core temperature optimal during outdoor winter training, trail running, or morning gym warmups.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1584865288642-42078afe6942?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
             [
@@ -960,7 +959,7 @@ class AdditionalProductsSeeder extends Seeder
                 'short_description' => 'Sleeveless training pullover hoodie with laser-cut back ventilation panels.',
                 'description' => 'Engineered for athletes who want head warmth without arm restriction. Kangaroo zip pocket keeps keys secure.',
                 'images' => [
-                    'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=800&auto=format&fit=crop&q=80',
                 ],
             ],
         ];
@@ -974,7 +973,7 @@ class AdditionalProductsSeeder extends Seeder
                 $pData
             );
 
-            // Re-sync product images
+            // Re-sync product images with UNIQUE images
             ProductImage::where('product_id', $product->id)->delete();
             foreach ($images as $index => $imgUrl) {
                 ProductImage::create([

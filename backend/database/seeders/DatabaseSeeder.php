@@ -1071,8 +1071,9 @@ class DatabaseSeeder extends Seeder
             );
         }
 
-        // 8. Seed 54 Additional Category-Wise Products
+        // 8. Seed 54 Additional Category-Wise Products & ensure 100% unique images across entire catalog
         $this->call(AdditionalProductsSeeder::class);
+        $this->call(FixUniqueProductImagesSeeder::class);
 
         // 9. Log initial activity
         ActivityLog::create([
